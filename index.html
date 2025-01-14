@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: #ececec;
+            margin: auto;
+            max-width: 1200px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        h1{
+            text-align: center;
+            color: #fff;
+            background: #5b8aff;
+            margin: 10px auto ;
+            padding: 10px;
+            border-radius: 8px;
+/* box-shadow: 2px 2px 2px 2px #f7cdcd; */
+        }
+        .con{
+            max-width: 800px;
+            background-color: #d4e0fd;
+            width: 100%;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+        form{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input[type=text]{
+            width: 100%;
+            padding: 15px;
+            margin: 10px 5px;
+            font-size: 20px;
+            border-radius: 8px;
+            border: 1px solid #dcdcdc;
+        }
+        input[type=submit]{
+            width: 100px;
+            padding: 15px;
+            margin: 10px 5px;
+            font-size: 20px;
+            border-radius: 8px;
+            background: #5b8aff;
+            color: #fff;
+            border: 1px solid #dcdcdc;
+
+        }
+        .contaniner{
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid;
+            border-radius: 5px;
+            margin: 10px 0px;
+            align-items: center;
+            padding: 5px 20px;
+            border: 1px solid #bababd;
+
+        }
+        .contaniner h2{
+            font-size: 20px;
+            padding: 10px;
+        /* text-align: center; */
+            /* border: 1px solid; */
+            /* border-radius: 5px; */
+            /* margin: 10px 25px; */
+        }
+        .contaniner button{
+            background-color: #ff2303;
+            padding: 7px 15px;
+            border: 1px solid;
+            border-radius: 5px;
+            color: #fff;
+            
+
+        }
+        .contaniner button:hover{
+            background-color: #f76d58;
+        }
+        .msg{
+            text-align: center;
+            padding: 5px;
+            color: #5b8aff;
+            font-weight: bold;
+            height: 20px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <h1>To Do list Made by Saurav</h1>
+    <div class="msg"></div>
+    <form action="">
+        <input type="text" name="" id="datacome" placeholder="Enter a task">
+        <input type="submit" value="Add">
+    </form>
+    <div class="box">
+        <div class="contaniner">
+        <h2>Saurav Sharma</h2>
+        <button class="delete">Delete</button>
+        </div>
+    </div>
+</div>
+    <script>
+document.querySelector('form').addEventListener("submit",(e)=> {
+e.preventDefault();
+
+let data = document.querySelector("#datacome").value
+console.log(data);
+
+if(data == ""){
+    document.querySelector(".msg").innerText = "";
+
+    document.querySelector(".msg").innerText += "PLEASE ENTER A DATA";
+    setTimeout(() => {
+    document.querySelector(".msg").innerText = "";
+    }, 5000);
+ }else{
+    document.querySelector(".box").innerHTML += ` <div class="contaniner">
+        <h2>${data}</h2>
+        <button class="delete">Delete</button>
+      </div>`;
+      document.querySelector(".msg").innerText = "";
+
+      document.querySelector(".msg").innerText += "DATA ADD";
+        setTimeout(() => {
+        document.querySelector(".msg").innerText = "";
+        }, 5000);
+
+    document.querySelector("#datacome").value = ""
+
+
+}
+
+
+});
+
+
+document.querySelector(".box").addEventListener("click", (e) => {
+        const msgElement = document.querySelector(".msg");
+
+        if (e.target.classList.contains("delete")) {
+            e.target.parentElement.remove(); 
+            msgElement.innerText = "DATA DELETED";
+            setTimeout(() => {
+                msgElement.innerText = "";
+            }, 5000);
+        }
+    });
+    </script>
+</body>
+</html>
